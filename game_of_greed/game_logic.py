@@ -11,11 +11,16 @@ class GameLogic():
     def calculate_score(test_input):
         score = 0
         pairs =0 
-        num = (collections.Counter(test_input))
+        num = collections.Counter(test_input)
         
-        if num == None:
-            return 0
-
+        """ myList = [1,1,2,3,4,5,3,2,3,4,2,1,2,3]
+          Counter({2: 4, 3: 4, 1: 3, 4: 2, 5: 1})
+            >>> print Counter(myList).keys()
+            [1, 2, 3, 4, 5]
+            >>> 
+            >>> print Counter(myList).values()
+            [3, 4, 4, 2, 1]
+        """
 
         if 1 in num and 2 in num and 3 in num and 4 in num and 5 in num and 6 in num:
             
