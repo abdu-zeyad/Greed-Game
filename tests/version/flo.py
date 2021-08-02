@@ -60,7 +60,7 @@ def diff(game_play_func, path="", sample=""):
     builtins.input = mock_input
     
     try:
-        game_play_func(roll_dice=mock_roller)
+        game_play_func(roller=mock_roller)
     except SystemExit:
         real_print("No problem. System exits are allowed in this app.")
 

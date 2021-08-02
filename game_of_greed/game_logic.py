@@ -62,9 +62,9 @@ class GameLogic():
 
     
 
-    def roll_dice(self):
+    def roll_dice(x):
         dice=[]
-        for i in range(self.numberOfDice):
+        for i in range(x):
             dice.append(randint(1,6))
             roll = tuple(dice)
         return roll
@@ -105,8 +105,8 @@ class GameLogic():
 
 if __name__ == "__main__":
 
-     actual = GameLogic.calculate_score((),(5,))
-     print(actual)
+    values = GameLogic.roll_dice(1)
+    print(values)
 #    new_game= GameLogic()
 # #    roll= new_game.roll_dice()
 # #    keeper = new_game.keeper(roll)

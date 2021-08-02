@@ -4,9 +4,11 @@ class Game:
     # @staticmethod
     # def print_roll(roll):
     #     print(','.join([str(i) for i in roll]))
-    def play(self):
-        print('Welcome to Game of Greed')
-        res = input('Wanna play?')
+    def play(roller):
+        print("""Welcome to Game of Greed
+(y)es to play or (n)o to decline""")
+        
+        res = input('>')
         if res == 'n':
             print('OK. Maybe another time')
         elif res == 'y':
@@ -59,5 +61,7 @@ class Game:
                             if dice_to_keep == 'q':
                                 print(f"Total score is {score} points")
                                 print(f'Thanks for playing. You earned {score} points')
+                                
 if __name__ == '__main__':
-    pass
+    new_game=Game()
+    new_game.play()
