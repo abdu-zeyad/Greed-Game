@@ -56,12 +56,16 @@ class GameLogic():
             if num[i] >= 3   and i != 1:
                 score = score + ((i)*100*(num[i]-2))
 
-
-
-            
         print(num)
         return score
 
+    def greeting(self):
+            play = input('do you want to play?yes,or no?  ')
+            if play == 'yes':
+                print('lets do it ')
+            elif play == 'no':
+                print('we will play later')
+            
         
     def roll_dice(times=6):
         return tuple(randint(1,6) for _ in range(0, times))
@@ -69,6 +73,7 @@ class GameLogic():
 
 
 if __name__ == "__main__":
-    new_game = GameLogic.calculate_score((1, 1, 1, 2, 2, 2))
+    new_game = GameLogic()
+    new_game.greeting()
     print(new_game)
    
