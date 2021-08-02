@@ -1,5 +1,6 @@
 import collections
-
+from itertools import count
+from random import randint, sample, random
 
 class GameLogic():
     
@@ -66,11 +67,13 @@ class GameLogic():
                 score = score + ((num[i]-2)*i*100)
                 return score
                 continue
-            
-            
+        return score
+
+    def roll_dice(times=6):
+        return tuple(randint(1,6) for _ in range(0, times))
+    #  return sample(range(1, 6 + 1), times)
 
 
-            return score
 if __name__ == "__main__":
     new_game = GameLogic()
 
