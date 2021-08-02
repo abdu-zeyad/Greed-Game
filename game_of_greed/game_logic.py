@@ -60,7 +60,7 @@ class GameLogic():
         return score
 
     def greeting(self):
-            play = input('do you want to play?yes,or no?  ')
+            play = input('do you want to play ? yes,or no?  ')
             if play == 'yes':
                 print('lets do it ')
             elif play == 'no':
@@ -73,7 +73,8 @@ class GameLogic():
 
 
 if __name__ == "__main__":
-    new_game = GameLogic()
-    new_game.greeting()
+    new_game = GameLogic.calculate_score((1,4,5,6))
     print(new_game)
+    new_game = GameLogic()
+    new_game.greeting()    
    
