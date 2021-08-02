@@ -1,15 +1,19 @@
+# from _typeshed import Self
 import collections
+from hashlib import new
 from itertools import count
 from random import randint, sample, random
+from warnings import simplefilter
 
 class GameLogic():
     numberOfDice=6
     bank=0
+    totalscore=0
 
     def __init__(self):
         pass 
     
-    def calculate_score(roll_dice):
+    def calculate_score(self,roll_dice):
         score = 0
         pairs_double =0 
         pairs_trible=0
@@ -70,21 +74,42 @@ class GameLogic():
     
 
     def roll_dice(self):
-        roll = tuple(randint(1,6) for _ in range(0, self.numberOfDice))
+        dice=[]
+        for i in range(self.numberOfDice):
+            dice.append(randint(1,6))
+            roll = tuple(dice)
         return roll
 
-    def keeper(roll_dice):
+    def keeper(self,roll_dice):
         keeper=[]
-        for x in roll_dice:
-            pick = input(f'type yes if you want to keep  {x}  ')
+        for dice in roll_dice:
+            pick = input(f'type yes if you want to keep  {dice}  ')
             if pick == 'yes':
-                keeper.append(x)
-
-        return keeper
+                keeper.append(dice)
+                self.numberOfDice -=1
+        score = self.calculate_score(tuple(keeper))
+        self.bank +=score
+        self.again_roll()
+        return tuple(keeper)
     
-    def number_dice(self,keeper,roll_dice):
-        self.numberOfDice = -len(roll_dice)+len(keeper)
-        
+    def again_roll(self):
+        again_roll=input('roll again')
+        if again_roll== 'yes':
+            roll = self.roll_dice()
+            result = self.calculate_score(roll)
+            if result == 0:
+                print('you lost')
+                
+                self.bank = 0
+            else:
+                self.keeper(roll)
+        elif again_roll  == 'n':
+            self.totalscore +=self.bank
+    
+    def show_results(self):
+        print(f'{self.totalscore}')
+
+
         
 class Banker:
 
@@ -105,18 +130,14 @@ class Banker:
 
 
 if __name__ == "__main__":
-    x = GameLogic.roll_dice(GameLogic)
-    print(x)
-    y = GameLogic.keeper(x)
-    game = GameLogic.calculate_score(y)
-    print(y)
-    print(game)
-
-
-    x = GameLogic.roll_dice(GameLogic)
-    print(x)
-    y = GameLogic.keeper(x)
-    game = GameLogic.calculate_score(y)
-    print(y)
-    print(game)
-
+   new_game= GameLogic()
+#    roll= new_game.roll_dice()
+#    keeper = new_game.keeper(roll)
+#    result=new_game.show_results()
+    
+#    print(result)
+   print(new_game.calculate_score((1,1))) 
+   x=(new_game.roll_dice()) 
+   print(x) 
+   print(new_game.keeper(x)) 
+   print(new_game.show_results())
