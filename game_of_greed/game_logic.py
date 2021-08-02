@@ -9,7 +9,7 @@ class GameLogic():
     def __init__(self):
         pass 
     
-    def calculate_score(self,roll_dice ):
+    def calculate_score(roll_dice ):
         score = 0
         pairs_double =0 
         pairs_trible=0
