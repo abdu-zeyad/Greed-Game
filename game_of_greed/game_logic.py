@@ -1,9 +1,5 @@
-# from _typeshed import Self
 import collections
-from hashlib import new
-from itertools import count
-from random import randint, sample, random
-from warnings import simplefilter
+from random import randint
 
 class GameLogic():
     numberOfDice=6
@@ -13,7 +9,7 @@ class GameLogic():
     def __init__(self):
         pass 
     
-    def calculate_score(self,roll_dice):
+    def calculate_score(self,roll_dice ):
         score = 0
         pairs_double =0 
         pairs_trible=0
@@ -64,13 +60,6 @@ class GameLogic():
         print(num)
         return score
 
-    # def greeting(self):
-    #         play = input('do you want to play ? yes,or no?  ')
-    #         if play == 'yes':
-    #             print('lets do it ')
-    #         elif play == 'no':
-    #             print('we will play later')
-            
     
 
     def roll_dice(self):
@@ -111,33 +100,21 @@ class GameLogic():
 
 
         
-class Banker:
 
-    def __init__(self):
-        self.shelved = 0
-        self.balance= 0
- 
-    def shelf(self,num):
-        self.shelved += num
-   
-    def bank(self):
-        self.balance += self.shelved
-        self.shelved = 0
-        return self.balance
-
-    def clear_shelf(self):
-        self.shelved = 0
 
 
 if __name__ == "__main__":
-   new_game= GameLogic()
-#    roll= new_game.roll_dice()
-#    keeper = new_game.keeper(roll)
-#    result=new_game.show_results()
+
+     actual = GameLogic.calculate_score((),(5,))
+     print(actual)
+#    new_game= GameLogic()
+# #    roll= new_game.roll_dice()
+# #    keeper = new_game.keeper(roll)
+# #    result=new_game.show_results()
     
-#    print(result)
-   print(new_game.calculate_score((1,1))) 
-   x=(new_game.roll_dice()) 
-   print(x) 
-   print(new_game.keeper(x)) 
-   print(new_game.show_results())
+# #    print(result)
+#    print(new_game.calculate_score((1,1))) 
+#    x=(new_game.roll_dice()) 
+#    print(x) 
+#    print(new_game.keeper(x)) 
+#    print(new_game.show_results())
