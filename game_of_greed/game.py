@@ -12,10 +12,10 @@ class Game:
         self._print = print_func
         self._input = input_func
         self.score = 0
-        self.num_rounds = 10
+        self.num_rounds = 100
 
 
-    def play(self, num_rounds=10):
+    def play(self, num_rounds=100):
 
         self.num_rounds = num_rounds
 
@@ -64,7 +64,7 @@ class Game:
 
             self._print(f'***{roll}***')
 
-            keepers = self.keeperFunction()
+            keepers = self.keeperFunction(roll)
 
             num_dice -= len(keepers)
 
@@ -88,13 +88,30 @@ class Game:
 
         return score
 
-    def keeperFunction(self):
+    def keeperFunction(self, roll):
 
+        while True:
 
-            keep_response = self._input('Enter dice to keep, or (q)uit:')
+            keep_response = self._input('Enter dice to keep: ')
 
             keepers = tuple(int(char) for char in keep_response)
-            return keepers
+
+            if self.validate(roll, keepers):
+                return keepers
+            else:
+                self._print('No way pal')
+                self._print(roll)
+
+
+
+
+
+    def validate(self, roll, keepers):
+
+        roll_counter = Counter(roll)
+        keepers_counter = Counter(keepers)
+        return len(keepers_counter - roll_counter) == 0
+            
 
     def calculate_score(self,m ):
         score = 0
