@@ -67,7 +67,22 @@ class GameLogic():
             roll = tuple(dice)
         return roll
 
-    # def keeper(self,roll_dice):
+    def get_scorers(x:tuple)->tuple:
+        return x
+    
+
+
+if __name__ == "__main__":
+
+    # values = GameLogic.roll_dice(1)
+    # print(values)
+   new_game= GameLogic()
+   print(new_game.calculate_score((5,)))
+
+
+
+
+# def keeper(self,roll_dice):
     #     keeper=[]
     #     for dice in roll_dice:
     #         pick = input(f'type yes if you want to keep  {dice}  ')
@@ -96,12 +111,3 @@ class GameLogic():
     # def show_results(self):
     #     print(f'{self.totalscore}')
 
-
-
-
-if __name__ == "__main__":
-
-    # values = GameLogic.roll_dice(1)
-    # print(values)
-   new_game= GameLogic()
-   print(new_game.calculate_score((5,)))
