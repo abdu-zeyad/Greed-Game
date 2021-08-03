@@ -67,7 +67,9 @@ class GameLogic():
             roll = tuple(dice)
         return roll
 
+    @staticmethod
     def get_scorers(x:tuple)->tuple:
+
         return x
     
     def validate_keepers(x,y):
@@ -77,8 +79,10 @@ if __name__ == "__main__":
 
     # values = GameLogic.roll_dice(1)
     # print(values)
-   new_game= GameLogic()
-   print(new_game.calculate_score((5,)))
+    new_game= GameLogic()
+    print(new_game.calculate_score((1,2)))
+    print(new_game.get_scorers((1,2)))
+
 
 
 
