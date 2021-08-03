@@ -35,6 +35,7 @@ class Game(GameLogic,Banker):
                 print(sentence)
                 print("Enter dice to keep, or (q)uit:")
                 dice_to_keep = input("> ") 
+
                 if dice_to_keep == "q":
                     var1 = False
                     print(f"Thanks for playing. You earned {self.balance} points")
