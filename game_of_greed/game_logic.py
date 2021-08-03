@@ -8,13 +8,12 @@ class GameLogic():
 
     def __init__(self):
         pass 
-    
-    def calculate_score(test_input)->int:
+    @staticmethod
+    def calculate_score(test_input:tuple)->int:
         score = 0
         pairs_double =0 
         pairs_trible=0
         num = collections.Counter(test_input)
-        print(num)
         """ myList = [1,1,2,3,4,5,3,2,3,4,2,1,2,3]
           Counter({2: '4', 3: '4', 1: '3', 4: '2', 5: '1'})
     
@@ -57,7 +56,6 @@ class GameLogic():
             if num[i] >= 3   and i != 1:
                 score = score + ((i)*100*(num[i]-2))
 
-        print(num)
         return score
 
     
