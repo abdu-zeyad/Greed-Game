@@ -70,7 +70,8 @@ class GameLogic():
     def get_scorers(x:tuple)->tuple:
         return x
     
-
+    def validate_keepers(x,y):
+        return False
 
 if __name__ == "__main__":
 
