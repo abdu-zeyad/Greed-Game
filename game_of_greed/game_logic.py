@@ -95,8 +95,16 @@ class GameLogic():
                      m.append(i)  
         return m
     
-    def validate_keepers(x,y):
-        return False
+    def validate_keepers(roll,keepers):
+        for i in range(len(keepers)-len(roll)+1):
+            for j in range(len(roll)):
+                if keepers[i + j] != roll[j]:
+                    break
+                else:
+                    return False
+        return True
+        
+
 
 if __name__ == "__main__":
 
@@ -104,7 +112,10 @@ if __name__ == "__main__":
     # print(values)
     new_game= GameLogic()
     print(new_game.calculate_score((1,2)))
-    print(new_game.get_scorers((1,2,1,5)))
+    roll = (1,)
+    keepers = (1, 1, 1, 1, 1, 1)
+    print(new_game.validate_keepers(roll, keepers))
+
 
 
 
