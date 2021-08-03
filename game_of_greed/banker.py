@@ -1,3 +1,4 @@
+from tests.flo import *
 class Banker:
 
     def __init__(self):

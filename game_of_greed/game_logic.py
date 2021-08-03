@@ -1,7 +1,6 @@
 import collections
 from random import randint
-# from tests.version.flo import *
-
+from tests.flo import *
 class GameLogic():
     # numberOfDice=6
     # bank=0
