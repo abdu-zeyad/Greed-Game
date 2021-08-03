@@ -77,16 +77,22 @@ class GameLogic():
             if num[i] == 2:
                 pairs_double += 1
                 if pairs_double == 3:
-                    m.append(i)   
+                    for l in range(num[i]):
+                        m.append(i) 
+
             if i == 5 and num[i] < 3:
-                m.append(i)   
+                for l in range(num[i]):
+                  m.append(i)  
 
             if i == 1 and num[i] < 3:
-                  m.append(i)   
+                  for l in range(num[i]):
+                    m.append(i)  
             if num[i] >= 3 and i == 1:
-                 m.append(i)   
-            if num[i] >= 3   and i != 1:
+                for l in range(num[i]):
                   m.append(i)   
+            if num[i] >= 3   and i != 1:
+                  for l in range(num[i]):
+                     m.append(i)  
         return m
     
     def validate_keepers(x,y):
