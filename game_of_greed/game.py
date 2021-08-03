@@ -64,9 +64,8 @@ class Game:
 
             self._print(f'***{roll}***')
 
-            keepers = self.validate_roll(roll)
+            keepers = self.keeperFunction()
 
-            # TODO: handle non scoring but mysteriously used dice
             num_dice -= len(keepers)
 
             score += self.calculate_score(keepers)
@@ -89,25 +88,13 @@ class Game:
 
         return score
 
-    def validate_roll(self, roll):
+    def keeperFunction(self):
 
-        while True:
 
             keep_response = self._input('Enter dice to keep, or (q)uit:')
 
             keepers = tuple(int(char) for char in keep_response)
-
-            if self.validate(roll, keepers):
-                return keepers
-            else:
-                self._print('No way pal')
-                self._print(roll)
-
-    def validate(self, roll, keepers):
-
-        roll_counter = Counter(roll)
-        keepers_counter = Counter(keepers)
-        return len(keepers_counter - roll_counter) == 0
+            return keepers
 
     def calculate_score(self,m ):
         score = 0
@@ -171,9 +158,9 @@ class Game:
 if __name__ == "__main__":
     game = Game()
     game.play()
-    # x =game._start()
+    # x =game.keeperFunction()
     
-    # y =game._do_round()
+    # # y =game._do_round()
 
     # print(x)
-    # print(y)
+    # # print(y)
