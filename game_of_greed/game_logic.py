@@ -9,12 +9,12 @@ class GameLogic():
     def __init__(self):
         pass 
     
-    def calculate_score(self,x )->int:
+    def calculate_score(test_input)->int:
         score = 0
         pairs_double =0 
         pairs_trible=0
-        num = collections.Counter(x)
-        
+        num = collections.Counter(test_input)
+        print(num)
         """ myList = [1,1,2,3,4,5,3,2,3,4,2,1,2,3]
           Counter({2: '4', 3: '4', 1: '3', 4: '2', 5: '1'})
     
@@ -106,13 +106,4 @@ if __name__ == "__main__":
     # values = GameLogic.roll_dice(1)
     # print(values)
    new_game= GameLogic()
-# #    roll= new_game.roll_dice()
-# #    keeper = new_game.keeper(roll)
-# #    result=new_game.show_results()
-    
-# #    print(result)
-#    print(new_game.calculate_score((1,1))) 
-#    x=(new_game.roll_dice()) 
-#    print(x) 
-#    print(new_game.keeper(x)) 
-#    print(new_game.show_results())
+   print(new_game.calculate_score((5,)))
