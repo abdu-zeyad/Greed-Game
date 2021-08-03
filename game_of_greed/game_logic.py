@@ -69,8 +69,25 @@ class GameLogic():
 
     @staticmethod
     def get_scorers(x:tuple)->tuple:
+        pairs_double =0 
+        m=[]
+        num = collections.Counter(x)
+        print(num)
+        for i in num:
+            if num[i] == 2:
+                pairs_double += 1
+                if pairs_double == 3:
+                    m.append(i)   
+            if i == 5 and num[i] < 3:
+                m.append(i)   
 
-        return x
+            if i == 1 and num[i] < 3:
+                  m.append(i)   
+            if num[i] >= 3 and i == 1:
+                 m.append(i)   
+            if num[i] >= 3   and i != 1:
+                  m.append(i)   
+        return m
     
     def validate_keepers(x,y):
         return False
@@ -81,7 +98,7 @@ if __name__ == "__main__":
     # print(values)
     new_game= GameLogic()
     print(new_game.calculate_score((1,2)))
-    print(new_game.get_scorers((1,2)))
+    print(new_game.get_scorers((1,2,1,5)))
 
 
 
