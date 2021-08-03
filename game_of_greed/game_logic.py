@@ -1,5 +1,6 @@
 import collections
 from random import randint
+from tests.flo import *
 class GameLogic():
     # numberOfDice=6
     # bank=0
@@ -97,8 +98,6 @@ class GameLogic():
     # def show_results(self):
     #     print(f'{self.totalscore}')
 
-
-        
 
 
 
