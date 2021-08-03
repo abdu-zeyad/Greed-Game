@@ -1,167 +1,66 @@
 import random
 from collections import Counter
+from banker import Banker
+from game_logic import GameLogic
+
+# class CheatingScoundrelError(ValueError):
+#     pass
 
 
-class CheatingScoundrelError(ValueError):
-    pass
+class Game(GameLogic,Banker):
 
+    def __init__(self):
+        self.shelved = 0
+        self.balance=0
 
-class Game:
+    def play(self, roller=None):
+        roller=roller or Game.roll_dice
+        print("Welcome to Game of Greed")
+        print("(y)es to play or (n)o to decline")
+        decision = input("> ")
 
-    def __init__(self, print_func=print, input_func=input):
-        self._print = print_func
-        self._input = input_func
-        self.score = 0
-        self.num_rounds = 5
-
-
-    def play(self, num_rounds=5):
-
-        self.num_rounds = num_rounds
-
-        self._print("""Welcome to Game of Greed
-        (y)es to play or (n)o to decline""")
-
-        response = self._input('>')
-
-        if response == 'y':
-            self._start()
-        elif response == 'n':
-            self._print('OK. Maybe later')
-
-    def _start(self):
-
-        self.score = 0
-
-        round_num = 1
-
-        for i in range(1, self.num_rounds + 1):
-            self._print(f'Starting round {round_num}')
-
-            round_score = self._do_round()
-
-            self._print(f'You banked {round_score} points in round {round_num}')
-
-            self.score += round_score
-
-            round_num += 1
-
-            self._print(f'You have {self.score} points total')
-
-
-        self._print('Thanks for playing!')
-
-    def _do_round(self):
-        num_dice = 6
-
-        score = 0
-        while(True):
-            self._print(f'Rolling {num_dice} dice..')
-
-            roll = self.roll_dice(num_dice)
-
-            score = self.calculate_score(roll)
-
-            self._print(f'***{roll}***')
-
-            keepers = self.keeperFunction(roll)
-
-            num_dice -= len(keepers)
-
-            score += self.calculate_score(keepers)
-
-            self._print(f'You have {score} unbanked points and {num_dice} dice remaining')
-
-            if num_dice == 0:
-                num_dice = 6
-            self._print('(r)oll again, (b)ank your points or (q)uit:')
-            
-            roll_again_response = self._input('>')
-
-            if  roll_again_response == 'r':
-                continue
-
-            if roll_again_response =='q':
-                print('Thanks for playing. You earned  points')
-                break
-
-
-        return score
-
-    def keeperFunction(self, roll):
-
-        while True:
-
-            keep_response = self._input('Enter dice to keep, or (q)uit:')
-            if keep_response=='q':
-                
-                return  ()
-            keepers = tuple(int(char) for char in keep_response)
-            roll_counter = Counter(roll)
-            keepers_counter = Counter(keepers)
-            if  len(keepers_counter - roll_counter) == 0:
-                return keepers
-            else:
-                print("please input valid numbers")
-    def calculate_score(self,m ):
-        score = 0
-        pairs_double =0 
-        pairs_trible=0
-        num = Counter(m)
-        
-        """ myList = [1,1,2,3,4,5,3,2,3,4,2,1,2,3]
-          Counter({2: '4', 3: '4', 1: '3', 4: '2', 5: '1'})
-    
-            >>> print Counter(myList).keys()
-            i=[1, 2, 3, 4, 5]
-            >>> 
-            >>> print Counter(myList).values()
-            num[i]=[3, 4, 4, 2, 1]
-        """
-
-        if len(num) == 6 :
-            
-            score+=1500
-            return score
-        
-    
-
-        for i in num:
-
-            if num[i] == 2:
-                pairs_double += 1
-                if pairs_double == 3:
-                    score+=1500
-
-            if num[i] == 3  :
-                pairs_trible+=1
-                if pairs_trible==3:
-                    score+=1200
-                
-            if i == 5 and num[i] < 3:
-                score = score + (num[i]*50)
-
-
-            if i == 1 and num[i] < 3:
-                score = score + (num[i]*100)
-             
-            if num[i] >= 3 and i == 1:
-                score = score + 1000*(num[i]-2)
-
-            if num[i] >= 3   and i != 1:
-                score = score + ((i)*100*(num[i]-2))
-
-        print(num)
-        return score
-
-    def roll_dice(self,x):
-        dice=[]
-        for i in range(x):
-            dice.append(random.randint(1,6))
-            roll = tuple(dice)
-        return roll
-
-
+        if decision == "y":
+            var1 = True
+            round_num = 1
+            dice_num = 6
+            while var1:
+                print(f"Starting round {round_num}")
+                print(f"Rolling {dice_num} dice...")
+                dice = roller(dice_num)
+                sentence = "*** "
+                for x in dice:
+                    sentence = sentence + str(x) + " "
+                sentence = sentence + "***"
+                print(sentence)
+                print("Enter dice to keep, or (q)uit:")
+                dice_to_keep = input("> ") 
+                if dice_to_keep == "q":
+                    var1 = False
+                    print(f"Thanks for playing. You earned {self.balance} points")
+                else:
+                    new_list = []
+                    for x in dice_to_keep:
+                        new_list.append(int(x))
+                    tuple_list = tuple(new_list)
+                    shelf_score = self.calculate_score(tuple_list)
+                    self.shelf(shelf_score)
+                    dice_num = dice_num - len(dice_to_keep) 
+                    print(f"You have {self.shelved} unbanked points and {dice_num} dice remaining")
+                    print("(r)oll again, (b)ank your points or (q)uit:")
+                    decision2 = input("> ")
+                    if decision2 == "r":
+                        continue
+                    elif decision2 == "b":
+                        print(f"You banked {self.shelved} points in round {round_num}")
+                        self.bank()
+                        round_num += 1
+                        print(f"Total score is {self.balance} points")
+                        dice_num = 6
+                    elif decision2 == "q":
+                        print(f"Thanks for playing. You earned {self.balance} points")
+                        var1 = False
+        else: 
+            print("OK. Maybe another time")
 if __name__ == "__main__":
     game = Game()
     game.play()

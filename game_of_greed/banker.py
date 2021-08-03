@@ -4,7 +4,7 @@ class Banker:
         self.shelved = 0
         self.balance= 0
  
-    def shelf(self,num):
+    def shelf(self, num):
         self.shelved += num
    
     def bank(self):
