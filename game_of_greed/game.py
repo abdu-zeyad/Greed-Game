@@ -60,13 +60,9 @@ class Game:
 
             roll = self.roll_dice(num_dice)
 
-            zilch_check_score = self.calculate_score(roll)
+            score = self.calculate_score(roll)
 
             self._print(f'***{roll}***')
-
-            if zilch_check_score == 0:
-                self._print('Oh noes! Zilch')
-                return 0
 
             keepers = self.validate_roll(roll)
 
@@ -174,10 +170,10 @@ class Game:
 
 if __name__ == "__main__":
     game = Game()
-    # game.play()
+    game.play()
     # x =game._start()
     
-    y =game._do_round()
+    # y =game._do_round()
 
     # print(x)
-    print(y)
+    # print(y)
