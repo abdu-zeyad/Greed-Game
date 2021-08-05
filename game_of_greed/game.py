@@ -49,7 +49,7 @@ class Game(GameLogic, Banker):
                     self.shelf(shelf_score)
                     dice_num = dice_num - len(dice_to_keep)
                     print(
-                        f"You have {self.shelved} unbanked points and {dice_num} dice remaining")
+                        f"You have {self.shelved} un banked points and {dice_num} dice remaining")
                     print("(r)oll again, (b)ank your points or (q)uit:")
                     decision2 = input("> ")
                     if decision2 == "r":
